@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="bg-white">
-<div class="container mx-auto mt-10">
+<div class="container mx-auto mt-10" th:switch="${candidates}">
+    <h2 th:case="null">No candidates yet!</h2>
     <h1 class="text-center text-2xl font-bold mb-5">LIST CANDIDATES</h1>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto" th:case="*">
         <table class="min-w-full bg-white border border-gray-300">
             <thead>
             <tr>
@@ -24,16 +25,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="candidate : ${candidates}">
-                <td class="py-2 px-4 border-b" th:text="${candidate.id}"></td>
-                <td class="py-2 px-4 border-b" th:text="${candidate.fullName}"></td>
-                <td class="py-2 px-4 border-b" th:text="${candidate.dob}"></td>
-                <td class="py-2 px-4 border-b" th:text="${candidate.address}"></td>
-                <td class="py-2 px-4 border-b" th:text="${candidate.phone}"></td>
-                <td class="py-2 px-4 border-b" th:text="${candidate.email}"></td>
-                <td class="py-2 px-4 border-b">
-                    <a class="btn btn-success bg-green-500 text-white px-4 py-1 rounded" th:href="@{/candidates/edit/{id}(id=${candidate.id})}">Update</a>
-                    <a class="btn btn-danger bg-red-500 text-white px-4 py-1 rounded" th:href="@{/candidates/delete/{id}(id=${candidate.id})}">Delete</a>
+            <tr class="px-4 py-2" th:each="candidate : ${candidates}">
+                <td class="border-b" th:text="${candidate.id}"></td>
+                <td class="border-b" th:text="${candidate.fullName}"></td>
+                <td class="border-b" th:text="${candidate.dob}"></td>
+                <td class="border-b" th:text="${candidate.address}"></td>
+                <td class="border-b" th:text="${candidate.phone}"></td>
+                <td class="border-b" th:text="${candidate.email}"></td>
+                <td class="px-4 py-2 border-b">
+                    <a class="bg-green-500 text-white px-1 py-1 rounded" th:href="@{/edit/{id}(id=${candidate.id})}">Update</a>
+                    <a class="bg-red-500 text-white px-1 py-1 rounded" th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a>
                 </td>
             </tr>
             </tbody>

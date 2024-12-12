@@ -1,7 +1,9 @@
 package vn.edu.iuh.fit.trananhtien_practicelab5.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +11,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "candidate")
 public class Candidate {
@@ -37,8 +41,7 @@ public class Candidate {
     @Override
     public String toString() {
         return "Candidate{" +
-                "id=" + id +
-                ", dob=" + dob +
+                "dob=" + dob +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +

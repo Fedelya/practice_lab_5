@@ -2,11 +2,15 @@ package vn.edu.iuh.fit.trananhtien_practicelab5.backend.models;
 
 import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "address")
 public class Address {
@@ -21,7 +25,7 @@ public class Address {
     @Column(name = "city", length = 50)
     private String city;
 
-    @Column(name = "country")
+    @Column(name = "country", columnDefinition = "smallint(6)")
     private CountryCode country = CountryCode.VN;
 
     @Column(name = "number", length = 20)
@@ -33,8 +37,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "id=" + id +
-                ", street='" + street + '\'' +
+                "street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", country=" + country +
                 ", number='" + number + '\'' +
