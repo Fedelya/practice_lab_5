@@ -1,7 +1,16 @@
 package vn.edu.iuh.fit.trananhtien_practicelab5.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import com.neovisionaries.i18n.CountryCode;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "address")
 public class Address {
@@ -17,7 +26,7 @@ public class Address {
     private String city;
 
     @Column(name = "country")
-    private Short country;
+    private CountryCode country;
 
     @Column(name = "number", length = 20)
     private String number;
@@ -25,52 +34,15 @@ public class Address {
     @Column(name = "zipcode", length = 7)
     private String zipcode;
 
-    public Long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", country=" + country +
+                ", number='" + number + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Short getCountry() {
-        return country;
-    }
-
-    public void setCountry(Short country) {
-        this.country = country;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
 }
