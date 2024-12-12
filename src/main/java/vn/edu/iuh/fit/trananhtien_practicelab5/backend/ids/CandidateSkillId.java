@@ -2,11 +2,15 @@ package vn.edu.iuh.fit.trananhtien_practicelab5.backend.ids;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Embeddable
 public class CandidateSkillId implements Serializable {
     private static final long serialVersionUID = -8249989613282086222L;
@@ -15,22 +19,6 @@ public class CandidateSkillId implements Serializable {
 
     @Column(name = "skill_id", nullable = false)
     private Long skillId;
-
-    public Long getCanId() {
-        return canId;
-    }
-
-    public void setCanId(Long canId) {
-        this.canId = canId;
-    }
-
-    public Long getSkillId() {
-        return skillId;
-    }
-
-    public void setSkillId(Long skillId) {
-        this.skillId = skillId;
-    }
 
     @Override
     public boolean equals(Object o) {

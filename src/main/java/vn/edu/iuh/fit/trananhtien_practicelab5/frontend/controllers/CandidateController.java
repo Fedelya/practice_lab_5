@@ -14,6 +14,7 @@ public class CandidateController {
     private CandidateRepository candidateRepository;
     @Autowired
     private CandidateService candidateService;
+
     @GetMapping("/list")
     public String showCandidateList(Model model) {
         model.addAttribute("candidates", candidateRepository.findAll());

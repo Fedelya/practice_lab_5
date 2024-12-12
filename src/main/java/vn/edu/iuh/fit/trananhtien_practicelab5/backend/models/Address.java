@@ -1,16 +1,12 @@
 package vn.edu.iuh.fit.trananhtien_practicelab5.backend.models;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import com.neovisionaries.i18n.CountryCode;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "address")
 public class Address {
@@ -26,7 +22,7 @@ public class Address {
     private String city;
 
     @Column(name = "country")
-    private CountryCode country;
+    private CountryCode country = CountryCode.VN;
 
     @Column(name = "number", length = 20)
     private String number;
