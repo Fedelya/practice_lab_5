@@ -12,26 +12,26 @@
     <h2 th:case="null">No candidates yet!</h2>
     <h1 class="text-center text-2xl font-bold mb-5">LIST CANDIDATES</h1>
     <div class="overflow-x-auto" th:case="*">
-        <table class="min-w-full bg-white border border-gray-300">
+        <table class="w-full border-collapse">
             <thead>
-            <tr>
-                <th class="py-2 px-4 border-b">Id</th>
-                <th class="py-2 px-4 border-b">Full Name</th>
-                <th class="py-2 px-4 border-b">DOB</th>
-                <th class="py-2 px-4 border-b">Address</th>
-                <th class="py-2 px-4 border-b">Phone</th>
-                <th class="py-2 px-4 border-b">Email</th>
-                <th class="py-2 px-4 border-b" colspan="2">Action</th>
+            <tr class="border-b-2 border-gray-300 table-header">
+                <th class="py-2 px-4 border border-gray-300">Id</th>
+                <th class="py-2 px-4 border border-gray-300">Full Name</th>
+                <th class="py-2 px-4 border border-gray-300">DOB</th>
+                <th class="py-2 px-4 border border-gray-300">Address</th>
+                <th class="py-2 px-4 border border-gray-300">Phone</th>
+                <th class="py-2 px-4 border border-gray-300">Email</th>
+                <th class="py-2 px-4 border border-gray-300" colspan="2">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr class="px-4 py-2" th:each="candidate : ${candidates}">
-                <td class="border-b" th:text="${candidate.id}"></td>
-                <td class="border-b" th:text="${candidate.fullName}"></td>
-                <td class="border-b" th:text="${candidate.dob}"></td>
-                <td class="border-b" th:text="${candidate.address}"></td>
-                <td class="border-b" th:text="${candidate.phone}"></td>
-                <td class="border-b" th:text="${candidate.email}"></td>
+                <td class="border border-gray-300" th:text="${candidate.id}"></td>
+                <td class="border border-gray-300" th:text="${candidate.fullName}"></td>
+                <td class="border border-gray-300" th:text="${candidate.dob}"></td>
+                <td class="border border-gray-300" th:text="${candidate.address}"></td>
+                <td class="border border-gray-300" th:text="${candidate.phone}"></td>
+                <td class="border border-gray-300" th:text="${candidate.email}"></td>
                 <td class="px-4 py-2 border-b">
                     <a class="bg-green-500 text-white px-1 py-1 rounded" th:href="@{/edit/{id}(id=${candidate.id})}">Update</a>
                     <a class="bg-red-500 text-white px-1 py-1 rounded" th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a>
