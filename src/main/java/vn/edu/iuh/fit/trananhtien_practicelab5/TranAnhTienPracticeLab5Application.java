@@ -9,5 +9,4 @@ public class TranAnhTienPracticeLab5Application {
     public static void main(String[] args) {
         SpringApplication.run(TranAnhTienPracticeLab5Application.class, args);
     }
-
 }
