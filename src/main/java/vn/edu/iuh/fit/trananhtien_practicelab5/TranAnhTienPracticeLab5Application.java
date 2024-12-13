@@ -39,7 +39,7 @@ public class TranAnhTienPracticeLab5Application {
 //                address.setCity(city[rnd.nextInt(5)]);
 //                address.setStreet(street[rnd.nextInt(5)]);
 //                address.setCountry(CountryCode.VN);
-//                address.setNumber(number[rnd.nextInt(5)] + rnd.nextLong(11111111L, 99999999L));
+//                address.setNumber(rnd.nextInt(1, 1000) + "");
 //                address.setZipcode(rnd.nextInt(70000, 80000)+"");
 //                addressRepository.save(address);
 //                Candidate candidate = new Candidate();

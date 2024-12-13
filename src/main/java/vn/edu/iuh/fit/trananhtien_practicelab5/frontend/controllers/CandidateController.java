@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +34,8 @@ public class CandidateController {
 
     @GetMapping("/list")
     public String showCandidateList(Model model) {
-        model.addAttribute("candidates", candidateRepository.findAll());
+        model.addAttribute("candidates",
+                candidateRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
         return "candidates/candidates";
     }
 
@@ -44,7 +46,7 @@ public class CandidateController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
         Page<Candidate> candidatePage = candidateService.findAll(
-                currentPage - 1, pageSize, "id", "asc");
+                currentPage - 1, pageSize, "id", "desc");
         model.addAttribute("candidatePage", candidatePage);
         int totalPages = candidatePage.getTotalPages();
         if (totalPages > 0) {
@@ -54,6 +56,52 @@ public class CandidateController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
         return "candidates/candidates-paging";
+    }
+
+    @GetMapping("/add")
+    public ModelAndView add() {
+        ModelAndView modelAndView = new ModelAndView();
+        Candidate candidate = new Candidate();
+        candidate.setAddress(new Address());
+        modelAndView.addObject("candidate", candidate);
+        modelAndView.addObject("address", candidate.getAddress());
+        modelAndView.addObject("countries", CountryCode.values());
+        modelAndView.setViewName("candidates/add-candidate");
+        return modelAndView;
+    }
+
+    @PostMapping("/candidates/add-candidate")
+    public String addCandidate(
+            @ModelAttribute("candidate") Candidate candidate,
+            @ModelAttribute("address") Address address,
+            BindingResult result, Model model
+    ) {
+        try {
+            // Check for binding errors
+            if (result.hasErrors()) {
+                model.addAttribute("candidate", candidate);
+                model.addAttribute("address", address);
+                return "candidates/add-candidate";
+            }
+
+            // Merge the address to ensure it's managed
+            if (address.getId() != null) {
+                address = addressRepository.findById(address.getId())
+                        .orElseThrow(() -> new EntityNotFoundException("Address not found"));
+            } else {
+                // If it's a new address, persist it
+                addressRepository.save(address);
+            }
+
+            candidate.setAddress(address);
+            candidateRepository.save(candidate);
+            return "redirect:/candidates";
+        } catch (EntityNotFoundException e) {
+            model.addAttribute("error", e.getMessage());
+            return "candidates/add-candidate";
+        } catch (Exception e) {
+            throw new RuntimeException("Error adding candidate: " + e.getMessage(), e);
+        }
     }
 
     @GetMapping("/edit/{id}")
