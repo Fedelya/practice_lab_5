@@ -34,8 +34,8 @@ public class Candidate {
     @Column(name = "phone", nullable = false, length = 15)
     private String phone;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address")
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address", nullable = false)
     private Address address;
 
     @Override
