@@ -94,4 +94,14 @@ public class CandidateController {
             throw new RuntimeException("Error updating candidate: " + e.getMessage(), e);
         }
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id) {
+        try{
+            candidateRepository.deleteById(id);
+        }catch (Exception e){
+            throw new RuntimeException("Error deleting candidate: " + e.getMessage(), e);
+        }
+        return "redirect:/candidates";
+    }
 }

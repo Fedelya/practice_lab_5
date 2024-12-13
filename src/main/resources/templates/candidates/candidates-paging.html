@@ -54,7 +54,7 @@
                 <td class="border border-gray-300" th:text="${candidate.email}"></td>
                 <td class="px-4 py-2 border-b">
                     <a class="bg-green-500 text-white px-1 py-1 rounded" th:href="@{/edit/{id}(id=${candidate.id})}">Update</a>
-                    <a class="bg-red-500 text-white px-1 py-1 rounded" th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a>
+                    <a class="bg-red-500 text-white px-1 py-1 rounded" th:href="@{/delete/{id}(id=${candidate.id})}" onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>
             </tbody>
