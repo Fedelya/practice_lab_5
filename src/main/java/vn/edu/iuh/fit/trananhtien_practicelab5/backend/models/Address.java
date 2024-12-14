@@ -42,6 +42,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return street + ", " + number + ", " + city + ", " + country.getName() + ", " + zipcode;
+        return number + ", " + street + ", " + city + ", " + country.getName() + ", " + zipcode;
     }
 }
