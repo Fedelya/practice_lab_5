@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -36,7 +37,7 @@ public class Company {
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    @OneToMany(mappedBy = "company")
-    private Set<Job> jobs = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    private List<Job> jobs;
 
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -27,8 +28,5 @@ public class Skill {
     private Byte type;
 
     @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<CandidateSkill> candidateSkills = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<JobSkill> jobSkills = new LinkedHashSet<>();
+    private List<JobSkill> jobSkills;
 }

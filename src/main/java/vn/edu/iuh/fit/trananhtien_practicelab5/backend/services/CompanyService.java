@@ -14,10 +14,9 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    public Page<Company> findAll(int pageNo, int pageSize, String sortBy,
-                                 String sortDirection) {
+    public Page<Company> findAll(int pageNo, int pageSize, String sortBy, String sortDirection) {
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-        return companyRepository.findAll(pageable); //findFirst.../findTop...
+        return companyRepository.findAll(pageable);
     }
 }

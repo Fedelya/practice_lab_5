@@ -14,12 +14,12 @@ public class JobSkill {
     private JobSkillId id;
 
     @MapsId("jobId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
 
     @MapsId("skillId") // Ensure this matches the field in JobSkillId
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill; // Add this line to reference the Skill entity
 

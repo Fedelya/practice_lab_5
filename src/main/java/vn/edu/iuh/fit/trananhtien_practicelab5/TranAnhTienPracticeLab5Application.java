@@ -8,8 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Address;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Candidate;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Company;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Job;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.AddressRepository;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.CandidateRepository;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.CompanyRepository;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.JobRepository;
 
 import java.time.LocalDate;
 import java.util.Random;
@@ -25,6 +29,10 @@ public class TranAnhTienPracticeLab5Application {
     private CandidateRepository candidateRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Autowired
+    private JobRepository jobRepository;
 
 //    @Bean
 //    CommandLineRunner initData() {
@@ -79,6 +87,21 @@ public class TranAnhTienPracticeLab5Application {
 //                candidate.setPhone(number[rnd.nextInt(4)] + rnd.nextLong(11111111L, 99999999L));
 //                candidate.setAddress(address);
 //                candidateRepository.save(candidate);
+//                Company company = new Company();
+//                company.setCompName("Company " + i);
+//                company.setEmail("company" + i + "@gmail.com");
+//                company.setPhone(number[rnd.nextInt(4)] + rnd.nextLong(11111111L, 99999999L));
+//                company.setWebUrl("http://company" + i + ".com");
+//                company.setAbout("About Company " + i);
+//                company.setAddress(address);
+//                companyRepository.save(company);
+//            }
+//            for (int i= 1; i < 100; i++){
+//                Job job = new Job();
+//                job.setJobName("Job " + i);
+//                job.setJobDesc("Job Description " + i);
+//                job.setCompany(companyRepository.findById((long) rnd.nextInt(1, 1000)).get());
+//                jobRepository.save(job);
 //            }
 //        };
 //    }
