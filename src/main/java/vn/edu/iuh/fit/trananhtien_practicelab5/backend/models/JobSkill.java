@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.trananhtien_practicelab5.backend.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.enums.SkillLevel;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.ids.JobSkillId;
 
 @Getter
@@ -27,5 +28,5 @@ public class JobSkill {
     private String moreInfos;
 
     @Column(name = "skill_level", nullable = false)
-    private Byte skillLevel;
+    private SkillLevel skillLevel;
 }

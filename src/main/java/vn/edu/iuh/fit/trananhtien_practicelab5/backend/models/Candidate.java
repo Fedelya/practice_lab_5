@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -40,6 +41,9 @@ public class Candidate {
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<CandidateSkill> candidateSkills = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    private List<CandidateSkill> candidateSkills;
+
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    private List<Experience> experiences;
 }
