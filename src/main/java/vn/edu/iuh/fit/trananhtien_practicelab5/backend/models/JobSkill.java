@@ -18,10 +18,14 @@ public class JobSkill {
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
 
+    @MapsId("skillId") // Ensure this matches the field in JobSkillId
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "skill_id", nullable = false)
+    private Skill skill; // Add this line to reference the Skill entity
+
     @Column(name = "more_infos", length = 1000)
     private String moreInfos;
 
     @Column(name = "skill_level", nullable = false)
     private Byte skillLevel;
-
 }

@@ -37,9 +37,6 @@ public class Address {
     @Column(name = "zipcode", length = 7)
     private String zipcode;
 
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
-    private Candidate candidate;
-
     @OneToOne(mappedBy = "address")
     private Company company;
 

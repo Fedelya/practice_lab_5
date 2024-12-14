@@ -36,21 +36,10 @@ public class Candidate {
     @Column(name = "phone", nullable = false, length = 15)
     private String phone;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    @OneToMany(mappedBy = "can")
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CandidateSkill> candidateSkills = new LinkedHashSet<>();
-
-    @Override
-    public String toString() {
-        return "Candidate{" +
-                "dob=" + dob +
-                ", email='" + email + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address=" + address +
-                '}';
-    }
 }

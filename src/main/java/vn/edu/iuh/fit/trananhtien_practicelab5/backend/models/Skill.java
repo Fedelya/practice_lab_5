@@ -26,10 +26,9 @@ public class Skill {
     @Column(name = "type")
     private Byte type;
 
-    @OneToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<CandidateSkill> candidateSkills = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<JobSkill> jobSkills = new LinkedHashSet<>();
-
 }
