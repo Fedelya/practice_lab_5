@@ -6,14 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Address;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Candidate;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Company;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Job;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.AddressRepository;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.CandidateRepository;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.CompanyRepository;
-import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.JobRepository;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.enums.SkillType;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.*;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.*;
 
 import java.time.LocalDate;
 import java.util.Random;
@@ -33,6 +28,8 @@ public class TranAnhTienPracticeLab5Application {
     private CompanyRepository companyRepository;
     @Autowired
     private JobRepository jobRepository;
+    @Autowired
+    private SkillRepository skillRepository;
 
 //    @Bean
 //    CommandLineRunner initData() {
@@ -95,8 +92,14 @@ public class TranAnhTienPracticeLab5Application {
 //                company.setAbout("About Company " + i);
 //                company.setAddress(address);
 //                companyRepository.save(company);
+//                Skill skill = new Skill();
+//                skill.setSkillName("Skill " + i);
+//                skill.setSkillDescription("Skill Description " + i);
+//                skill.setSkillType(i % 3 == 0 ? SkillType.UNSPECIFIC : i % 3 == 1 ? SkillType.TECHNICAL_SKILL : SkillType.SOFT_SKILL);
+//                skill.setJobSkills(null);
+//                skillRepository.save(skill);
 //            }
-//            for (int i= 1; i < 3000; i++){
+//            for (int i = 1; i < 3000; i++) {
 //                Job job = new Job();
 //                job.setJobName("Job " + i);
 //                job.setJobDesc("Job Description " + i);

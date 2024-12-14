@@ -252,9 +252,9 @@
             th:alt-title="${iStat.even}? 'even' : 'odd'">
             <h3 class="item-title" th:text="${company.getCompName()}"></h3>
             <div class="item-details">
-                <p><strong>Description: </strong><strong th:text="${job.jobDesc}"></strong></p>
-                <p><strong>Job Name: </strong><strong th:text="${job.jobName}"></strong></p>
-                <p><strong>Address: </strong><strong th:text="${job.company.address.city}"></strong></p>
+                <p><strong>Description: </strong><strong style="color: #888;" th:text="${job.jobDesc}"></strong></p>
+                <p><strong>Job Name: </strong><strong style="color: #888;" th:text="${job.jobName}"></strong></p>
+                <p><strong>Address: </strong><strong style="color: #888;" th:text="${job.company.address.city}"></strong></p>
                 <!-- Thêm nút Apply Now -->
                 <div class="view-detail-button">
                     <a class="btn btn-primary"
