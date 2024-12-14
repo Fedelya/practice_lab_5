@@ -31,11 +31,11 @@ public class CandidateController {
     @Autowired
     private AddressRepository addressRepository;
 
-//    @GetMapping("/list")
-//    public String showCandidateList(Model model) {
-//        model.addAttribute("candidates", candidateRepository.findAll());
-//        return "candidates/candidates";
-//    }
+    @GetMapping("/list")
+    public String showCandidateList(Model model) {
+        model.addAttribute("candidates", candidateRepository.findAll());
+        return "candidates/candidates";
+    }
 
     @GetMapping("/candidates")
     public String showCandidateListPage(Model model,
