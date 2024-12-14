@@ -14,9 +14,10 @@ public class CandidateService {
     @Autowired
     private CandidateRepository candidateRepository;
 
-    public Page<Candidate> findAll(int pageNo, int pageSize, String sortBy, String sortDirection) {
+    public Page<Candidate> findAll(int pageNo, int pageSize, String sortBy,
+                                   String sortDirection) {
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-        return candidateRepository.findAll(pageable);
+        return candidateRepository.findAll(pageable);//findFirst.../findTop...
     }
 }
