@@ -96,7 +96,7 @@ public class TranAnhTienPracticeLab5Application {
 //                company.setAddress(address);
 //                companyRepository.save(company);
 //            }
-//            for (int i= 1; i < 100; i++){
+//            for (int i= 1; i < 3000; i++){
 //                Job job = new Job();
 //                job.setJobName("Job " + i);
 //                job.setJobDesc("Job Description " + i);

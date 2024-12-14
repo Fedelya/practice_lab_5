@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Portal</title>
+    <title>Unified Job Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Reset Styles */
+        <
+        style >
+            /* Reset Styles */
         * {
             margin: 0;
             padding: 0;
@@ -21,9 +23,9 @@
         }
 
         header {
-            display: flex; /* Sử dụng flexbox để định vị các phần tử trong header */
-            justify-content: space-between; /* Đẩy h1 và nav về hai phía */
-            align-items: center; /* Căn giữa theo chiều dọc */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: linear-gradient(90deg, #6fcf97, #56ccf2);
             color: #fff;
             padding: 10px 20px;
@@ -34,7 +36,7 @@
         }
 
         header h1 {
-            font-size: 1.5rem; /* Giảm kích thước nếu cần */
+            font-size: 1.5rem;
             font-weight: 700;
             margin: 0;
         }
@@ -73,11 +75,11 @@
             color: #56ccf2;
         }
 
-        .company-list {
+        .item-list {
             list-style: none;
         }
 
-        .company-item {
+        .item {
             padding: 20px;
             margin-bottom: 15px;
             border: 1px solid #ddd;
@@ -86,45 +88,54 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .company-item:hover {
+        .item:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .company-name {
+        .item-title {
             font-size: 1.5rem;
             color: #333;
             margin-bottom: 10px;
         }
 
-        .company-details p {
+        .item-details {
+            position: relative;
+            padding-right: 100px;
+        }
+
+        .item-details p {
             margin: 5px 0;
             color: #555;
         }
 
-        .company-details a {
-            color: #6fcf97; /* Giữ màu sắc khác biệt cho link */
+        .item-details a {
+            color: #6fcf97;
             text-decoration: none;
         }
 
-        .company-details a:hover {
+        .item-details a:hover {
             text-decoration: underline;
         }
 
-        .button {
-            margin-top: 15px;
+        .view-detail-button {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .view-detail-button .btn-primary {
             background-color: #6fcf97;
             color: #fff;
-            padding: 10px 20px;
-            border: none;
+            padding: 10px 15px;
             border-radius: 5px;
-            cursor: pointer;
             text-decoration: none;
-            text-align: center;
+            display: inline-block;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .button:hover {
+        .view-detail-button .btn-primary:hover {
             background-color: #4caf73;
             transform: translateY(-2px);
         }
@@ -170,11 +181,11 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .company-item {
+            .item-list {
                 padding: 15px;
             }
 
-            .button {
+            a {
                 width: 100%;
                 text-align: center;
             }
@@ -201,11 +212,6 @@
         .btn-primary:hover {
             background-color: #4caf73;
             transform: translateY(-2px);
-        }
-
-        .company-details {
-            position: relative; /* Bắt buộc để định vị nút trong phần tử cha */
-            padding-right: 100px; /* Đảm bảo khoảng cách từ nội dung đến nút */
         }
 
         .view-detail-button {
@@ -235,74 +241,64 @@
 <body>
 
 <header>
-    <h1>Job Portal</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Post a Job</a>
-        <a href="#">Add Company</a>
-        <a href="#">Login</a>
-    </nav>
+    <h1>Unified Job Portal</h1>
 </header>
 
 <div class="container">
-    <h2>Available Companies</h2>
-    <ul class="company-list">
-        <li class="company-item" th:each="company, iStat : ${companyPage.content}"
+    <h2>Available Jobs</h2>
+    <ul class="item-list">
+        <li class="item" th:each="job, iStat : ${jobPage.content}"
             th:style="${iStat.odd} ? 'background-color: #f3f3f3;' : ''"
             th:alt-title="${iStat.even}? 'even' : 'odd'">
-            <h3 class="company-name" th:text="${company.compName}"></h3>
-            <div class="company-details" style="position: relative;">
-                <p><strong>Email: </strong> <strong style="color: #888;" th:text="${company.email}"></strong></p>
-                <p><strong>Phone: </strong><strong style="color: #888;" th:text="${company.phone}"></strong></p>
-                <p><strong>Website:</strong> <a href="#" th:text="${company.webUrl}" target="_blank"></a></p>
-                <p><strong>About: </strong><strong style="color: #888;" th:text="${company.about}"></strong></p>
-                <p><strong>Address: </strong><strong style="color: #888;" th:text="${company.address}">Address:</strong>
-                </p>
-                <!-- Thêm nút View detail -->
+            <h3 class="item-title" th:text="${company.getCompName()}"></h3>
+            <div class="item-details">
+                <p><strong>Description: </strong><strong th:text="${job.jobDesc}"></strong></p>
+                <p><strong>Job Name: </strong><strong th:text="${job.jobName}"></strong></p>
+                <p><strong>Address: </strong><strong th:text="${job.company.address.city}"></strong></p>
+                <!-- Thêm nút Apply Now -->
                 <div class="view-detail-button">
                     <a class="btn btn-primary"
-                       th:href="@{/{companyId}/jobs(companyId=${company.id})}">View detail</a>
+                       th:href="@{/{companyId}/jobs(companyId=${company.id})}">Apply Now</a>
                 </div>
             </div>
-
         </li>
     </ul>
 
-    <div class="page-links" th:if="${companyPage.totalPages > 0}">
+    <div class="page-links" th:if="${jobPage.totalPages > 0}">
         <!-- Display "Previous" button -->
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.number - 0})}"
-           th:if="${companyPage.number > 0}"
+        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.number - 0})}"
+           th:if="${jobPage.number > 0}"
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Previous</a>
 
         <!-- Display all page numbers -->
-        <a th:href="@{/companies(size=${companyPage.size}, page=1)}" th:text="1"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=2)}" th:text="2"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=3)}" th:text="3"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=4)}" th:text="4"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=5)}" th:text="5"></a>
+        <a th:href="@{/jobs(size=${jobPage.size}, page=1)}" th:text="1"></a>
+        <a th:href="@{/jobs(size=${jobPage.size}, page=2)}" th:text="2"></a>
+        <a th:href="@{/jobs(size=${jobPage.size}, page=3)}" th:text="3"></a>
+        <a th:href="@{/jobs(size=${jobPage.size}, page=4)}" th:text="4"></a>
+        <a th:href="@{/jobs(size=${jobPage.size}, page=5)}" th:text="5"></a>
         <!-- Display ellipsis if there are more pages -->
-        <div th:if="${companyPage.totalPages > 5}" class="ellipsis">...</div>
-        <!-- Display the last 5 pages -->
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 4})}"
-           th:text="${companyPage.totalPages - 4}"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 3})}"
-           th:text="${companyPage.totalPages - 3}"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 2})}"
-           th:text="${companyPage.totalPages - 2}"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 1})}"
-           th:text="${companyPage.totalPages - 1}"></a>
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages})}"
-           th:text="${companyPage.totalPages}"></a>
+<!--        <div th:if="${jobPage.totalPages > 5}" class="ellipsis">...</div>-->
+<!--        &lt;!&ndash; Display the last 5 pages &ndash;&gt;-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 4})}"-->
+<!--           th:text="${jobPage.totalPages - 4}"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 3})}"-->
+<!--           th:text="${jobPage.totalPages - 3}"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 2})}"-->
+<!--           th:text="${jobPage.totalPages - 2}"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 1})}"-->
+<!--           th:text="${jobPage.totalPages - 1}"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages})}"-->
+<!--           th:text="${jobPage.totalPages}"></a>-->
 
         <!-- Display "Next" button -->
-        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.number + 2})}"
-           th:if="${companyPage.hasNext}"
+        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.number + 2})}"
+           th:if="${jobPage.hasNext}"
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Next</a>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2024 Job Portal. All rights reserved.</p>
+    <p>&copy; 2024 Unified Job Portal. All rights reserved.</p>
 </footer>
 
 </body>
