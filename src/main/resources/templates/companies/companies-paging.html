@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(90deg, #6fcf97, #56ccf2);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        header nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #56ccf2;
+        }
+
+        .company-list {
+            list-style: none;
+        }
+
+        .company-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .company-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .company-details p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .company-details a {
+            color: #6fcf97; /* Giữ màu sắc khác biệt cho link */
+            text-decoration: none;
+        }
+
+        .company-details a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            margin-top: 15px;
+            background-color: #6fcf97;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #4caf73;
+            transform: translateY(-2px);
+        }
+
+        .page-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .page-links a {
+            padding: 8px 12px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #6fcf97;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .page-links a:hover {
+            background-color: #f3f3f3;
+            transform: scale(1.05);
+        }
+
+        .page-links .active {
+            background-color: #6fcf97;
+            color: #fff;
+            border-color: #6fcf97;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #6fcf97;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .company-item {
+                padding: 15px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .page-links {
+                flex-wrap: wrap;
+            }
+
+            .page-links a {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Job Portal</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Post a Job</a>
+        <a href="#">Add Company</a>
+        <a href="#">Login</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Available Companies</h2>
+    <ul class="company-list">
+        <li class="company-item" th:each="company, iStat : ${companyPage.content}"
+            th:style="${iStat.odd} ? 'background-color: #f3f3f3;' : ''"
+            th:alt-title="${iStat.even}? 'even' : 'odd'">
+            <h3 class="company-name" th:text="${company.compName}"></h3>
+            <div class="company-details">
+                <p><strong>Email: </strong> <strong style="color: #888;" th:text="${company.email}"></strong></p>
+                <p><strong>Phone: </strong><strong style="color: #888;" th:text="${company.phone}"></strong></p>
+                <p><strong>Website:</strong> <a href="#" th:text="${company.webUrl}" target="_blank"></a></p>
+                <p><strong>About: </strong><strong style="color: #888;" th:text="${company.about}"></strong></p>
+                <p><strong>Address: </strong><strong style="color: #888;" th:text="${company.address}">Address:</strong></p>
+            </div>
+        </li>
+    </ul>
+
+    <div class="page-links" th:if="${companyPage.totalPages > 0}">
+        <!-- Display "Previous" button -->
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.number - 0})}"
+           th:if="${companyPage.number > 0}"
+           class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Previous</a>
+
+        <!-- Display all page numbers -->
+        <a th:href="@{/companies(size=${companyPage.size}, page=1)}" th:text="1"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=2)}" th:text="2"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=3)}" th:text="3"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=4)}" th:text="4"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=5)}" th:text="5"></a>
+        <!-- Display ellipsis if there are more pages -->
+        <div th:if="${companyPage.totalPages > 5}" class="ellipsis">...</div>
+        <!-- Display the last 5 pages -->
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 4})}"
+           th:text="${companyPage.totalPages - 4}"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 3})}"
+           th:text="${companyPage.totalPages - 3}"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 2})}"
+           th:text="${companyPage.totalPages - 2}"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages - 1})}"
+           th:text="${companyPage.totalPages - 1}"></a>
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.totalPages})}"
+           th:text="${companyPage.totalPages}"></a>
+
+        <!-- Display "Next" button -->
+        <a th:href="@{/companies(size=${companyPage.size}, page=${companyPage.number + 2})}"
+           th:if="${companyPage.hasNext}"
+           class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Next</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Job Portal. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

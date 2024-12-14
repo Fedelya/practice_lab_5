@@ -87,8 +87,8 @@
 <div class="container">
     <h2>Available Companies</h2>
     <ul class="company-list">
-        <li class="company-item">
-            <h3 class="company-name">Tech Company</h3>
+        <li class="company-item" th:each="company : ${companyPage.content}">
+            <h3 class="company-name" th:text="${company.name}"></h3>
             <div class="company-details">
                 <p><strong>Email:</strong> info@techcompany.com</p>
                 <p><strong>Phone:</strong> 123-456-7890</p>
