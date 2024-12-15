@@ -20,4 +20,7 @@ public class CandidateService {
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         return candidateRepository.findAll(pageable);//findFirst.../findTop...
     }
+    public Candidate findByEmail(String username) {
+        return candidateRepository.findByEmail(username);
+    }
 }

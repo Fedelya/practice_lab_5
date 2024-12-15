@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Candidate;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Company;
@@ -38,6 +39,18 @@ public class CompanyController {
         return "companies/companies-paging";
     }
 
-
-
+    @RequestMapping("/companies")
+    public String showCompaniesPage(Model model, @RequestParam("page") Optional<Integer> page,
+                                    @RequestParam("size") Optional<Integer> size) {
+        int currPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+        Page<Company> companyPage = companyService.findAll(currPage-1, pageSize, "id", "asc");
+        model.addAttribute("companyPage", companyPage);
+        int totalPage = companyPage.getTotalPages();
+        if(totalPage > 0){
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        return "companies/companies-paging";
+    }
 }

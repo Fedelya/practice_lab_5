@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unified Job Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Thêm link tới Google Fonts cho font chữ dễ nhìn -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        <
-        style >
-            /* Reset Styles */
+        /* Reset Styles */
         * {
             margin: 0;
             padding: 0;
@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto */
             line-height: 1.6;
             color: #222;
             background-color: #f4f4f4;
@@ -214,28 +214,6 @@
             transform: translateY(-2px);
         }
 
-        .view-detail-button {
-            position: absolute;
-            top: 50%; /* Căn giữa theo chiều dọc */
-            right: 20px; /* Cách mép phải một khoảng */
-            transform: translateY(-50%); /* Căn chỉnh chính xác ở giữa */
-        }
-
-        .view-detail-button .btn-primary {
-            background-color: #6fcf97;
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .view-detail-button .btn-primary:hover {
-            background-color: #4caf73;
-            transform: translateY(-2px);
-        }
-
     </style>
 </head>
 <body>
@@ -268,17 +246,13 @@
                         <span th:text="${skillInfo.skillLevel.name()}" style="display: inline;"></span>
                     </li>
                     <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
-
                         <strong style="display: inline; margin-right: 5px;">Skill Description:</strong>
                         <span th:text="${skillInfo.skill.skillDescription}" style="display: inline;"></span>
-
                     </li>
                     <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
                         <strong style="display: inline; margin-right: 5px;">More Info:</strong>
                         <span th:text="${skillInfo.moreInfos}" style="display: inline;"></span>
                     </li>
-
-
                 </ul>
 
                 <div class="view-detail-button">
@@ -289,32 +263,9 @@
     </ul>
 
     <div class="page-links" th:if="${jobPage.totalPages > 0}">
-        <!-- Display "Previous" button -->
         <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.number - 0})}"
            th:if="${jobPage.number > 0}"
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Previous</a>
-
-        <!--        &lt;!&ndash; Display all page numbers &ndash;&gt;-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=1)}" th:text="1"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=2)}" th:text="2"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=3)}" th:text="3"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=4)}" th:text="4"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=5)}" th:text="5"></a>-->
-        <!-- Display ellipsis if there are more pages -->
-        <!--        <div th:if="${jobPage.totalPages > 5}" class="ellipsis">...</div>-->
-        <!--        &lt;!&ndash; Display the last 5 pages &ndash;&gt;-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 4})}"-->
-        <!--           th:text="${jobPage.totalPages - 4}"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 3})}"-->
-        <!--           th:text="${jobPage.totalPages - 3}"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 2})}"-->
-        <!--           th:text="${jobPage.totalPages - 2}"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 1})}"-->
-        <!--           th:text="${jobPage.totalPages - 1}"></a>-->
-        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages})}"-->
-        <!--           th:text="${jobPage.totalPages}"></a>-->
-
-        <!-- Display "Next" button -->
         <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.number + 2})}"
            th:if="${jobPage.hasNext}"
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Next</a>
