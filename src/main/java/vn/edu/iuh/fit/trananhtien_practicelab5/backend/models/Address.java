@@ -19,7 +19,7 @@ import java.util.Set;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "add_id", nullable = false)
     private Long id;
 
     @Column(name = "street", length = 150)

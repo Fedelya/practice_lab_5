@@ -1,13 +1,17 @@
 package vn.edu.iuh.fit.trananhtien_practicelab5.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.enums.SkillLevel;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.ids.CandidateSkillId;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "candidate_skill")
 public class CandidateSkill {
@@ -17,7 +21,7 @@ public class CandidateSkill {
     @MapsId("canId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "can_id", nullable = false)
-    private Candidate candidate; // This should match the mappedBy in Candidate
+    private Candidate candidate;
 
     @MapsId("skillId") // Ensure this matches the field in CandidateSkillId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

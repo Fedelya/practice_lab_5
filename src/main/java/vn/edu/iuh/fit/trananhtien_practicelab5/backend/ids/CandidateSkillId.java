@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class CandidateSkillId implements Serializable {
+    @Serial
     private static final long serialVersionUID = -8249989613282086222L;
     @Column(name = "can_id", nullable = false)
     private Long canId;
@@ -23,15 +25,13 @@ public class CandidateSkillId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CandidateSkillId entity = (CandidateSkillId) o;
-        return Objects.equals(this.skillId, entity.skillId) &&
-                Objects.equals(this.canId, entity.canId);
+        if (o == null || getClass() != o.getClass()) return false;
+        CandidateSkillId that = (CandidateSkillId) o;
+        return Objects.equals(canId, that.canId) && Objects.equals(skillId, that.skillId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(skillId, canId);
+        return Objects.hash(canId, skillId);
     }
-
 }

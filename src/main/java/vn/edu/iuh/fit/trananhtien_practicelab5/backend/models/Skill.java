@@ -29,6 +29,6 @@ public class Skill {
     private String skillName;
 
 
-    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
     private List<JobSkill> jobSkills;
 }

@@ -25,7 +25,7 @@ public class Job {
     private String jobName;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "company")
+    @JoinColumn(name = "com_id")
     private Company company;
 
     @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)

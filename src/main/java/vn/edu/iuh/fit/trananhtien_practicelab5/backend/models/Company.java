@@ -15,7 +15,7 @@ import java.util.Set;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comp_id", nullable = false)
+    @Column(name = "com_id", nullable = false)
     private Long id;
 
     @Column(name = "about", length = 2000)

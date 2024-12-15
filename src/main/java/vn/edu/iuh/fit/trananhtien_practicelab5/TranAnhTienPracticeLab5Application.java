@@ -6,7 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.enums.SkillLevel;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.enums.SkillType;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.ids.CandidateSkillId;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.ids.JobSkillId;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.*;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.*;
 
@@ -30,6 +33,12 @@ public class TranAnhTienPracticeLab5Application {
     private JobRepository jobRepository;
     @Autowired
     private SkillRepository skillRepository;
+    @Autowired
+    private ExperienceRepository experienceRepository;
+    @Autowired
+    private CandidateSkillRepository candidateSkillRepository;
+    @Autowired
+    private JobSkillRepository jobSkillRepository;
 
 //    @Bean
 //    CommandLineRunner initData() {
@@ -69,6 +78,7 @@ public class TranAnhTienPracticeLab5Application {
 //                    "Nguyen Dieu Hanh", "Tran Hoai Phuong", "Le Bao Han", "Pham Ngoc Dao", "Hoang Thuy Trang", "Phan Minh Phuong", "Vu Bich Huyen", "Dang Dieu Lan",
 //                    "Bui Thien Kim", "Do Xuan Thu"
 //            };
+//
 //            for (int i = 1; i < 1000; i++) {
 //                Address address = new Address();
 //                address.setCity(city[rnd.nextInt(60)]);
@@ -105,6 +115,34 @@ public class TranAnhTienPracticeLab5Application {
 //                job.setJobDesc("Job Description " + i);
 //                job.setCompany(companyRepository.findById((long) rnd.nextInt(1, 1000)).get());
 //                jobRepository.save(job);
+//            }
+//            for (int i = 1; i < 100 ; i++){
+//                Experience experience = new Experience();
+//                experience.setCompanyName("Company " + i);
+//                experience.setFromDate(LocalDate.of(rnd.nextInt(1980, 2010), rnd.nextInt(1, 12), rnd.nextInt(1, 28)));
+//                experience.setToDate(LocalDate.of(rnd.nextInt(2010, 2021), rnd.nextInt(1, 12), rnd.nextInt(1, 28)));
+//                experience.setRole("Role " + i);
+//                experience.setWorkDescription("Work Description " + i);
+//                experience.setCandidate(candidateRepository.findById((long) rnd.nextInt(1, 1000)).get());
+//                experienceRepository.save(experience);
+//            }
+//            for (int i = 1; i < 100; i++) {
+//                Candidate candidate = candidateRepository.findById(rnd.nextLong(1, 1000)).get();
+//                Skill skill = skillRepository.findById(rnd.nextLong(1, 1000)).get();
+//                CandidateSkill candidateSkill = new CandidateSkill();
+//                candidateSkill.setId(new CandidateSkillId());
+//                candidateSkill.setSkill(skill);
+//                candidateSkill.setSkillLevel(i%5==0? SkillLevel.BEGINNER:i%5==1?SkillLevel.INTERMEDIATE:i%5==2? SkillLevel.ADVANCED:i%5==3?SkillLevel.PROFESSIONAL:SkillLevel.MASTER);
+//                candidateSkill.setMoreInfos("More Infos " + i);
+//                candidateSkill.setCandidate(candidate);
+//                candidateSkillRepository.save(candidateSkill);
+//                JobSkill jobSkill = new JobSkill();
+//                jobSkill.setId(new JobSkillId());
+//                jobSkill.setJob(jobRepository.findById((long) rnd.nextInt(1, 3000)).get());
+//                jobSkill.setSkill(skillRepository.findById((long) rnd.nextInt(1, 1000)).get());
+//                jobSkill.setSkillLevel(i % 9 == 0 ? SkillLevel.BEGINNER : i % 9 == 2 ? SkillLevel.INTERMEDIATE : i % 9 == 4 ? SkillLevel.ADVANCED : i % 9 == 6 ? SkillLevel.PROFESSIONAL : SkillLevel.MASTER);
+//                jobSkill.setMoreInfo("More Infos " + i);
+//                jobSkillRepository.save(jobSkill);
 //            }
 //        };
 //    }
