@@ -4,6 +4,13 @@
 - **Họ và tên:** Trần Anh Tiến
 - **MSSV:** 21129821
 
+## Một số chức năng:
+- Hiển thị danh sách ứng viên
+- Thêm, Sửa, Xóa ứng viên
+- Hiển thị danh sách công ty
+- Hiển thị các job đang tuyển dụng của công ty
+  
+
 ## Một số hình ảnh minh họa
 
 ### Trang chủ: 
