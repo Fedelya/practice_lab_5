@@ -10,8 +10,4 @@ import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.CandidateSki
 public class CandidateSkillService {
     @Autowired
     private CandidateSkillRepository candidateSkillRepository;
-
-    public CandidateSkill getById(CandidateSkillId id) {
-        return candidateSkillRepository.findById(id).orElse(null);
-    }
 }

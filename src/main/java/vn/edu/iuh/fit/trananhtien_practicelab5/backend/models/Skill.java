@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.enums.SkillType;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,5 +31,5 @@ public class Skill {
 
 
     @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
-    private List<JobSkill> jobSkills;
+    private List<JobSkill> jobSkills= new ArrayList<>();
 }

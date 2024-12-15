@@ -248,18 +248,41 @@
     <h2>Available Jobs</h2>
     <ul class="item-list">
         <li class="item" th:each="job, iStat : ${jobPage.content}"
-            th:style="${iStat.odd} ? 'background-color: #f3f3f3;' : ''"
-            th:alt-title="${iStat.even}? 'even' : 'odd'">
-            <h3 class="item-title" th:text="${company.getCompName()}"></h3>
+            th:style="${iStat.odd} ? 'background-color: #f3f3f3;' : ''">
+            <h3 class="item-title" th:text="${job.jobName}"></h3>
             <div class="item-details">
                 <p><strong>Description: </strong><strong style="color: #888;" th:text="${job.jobDesc}"></strong></p>
-                <p><strong>Job Name: </strong><strong style="color: #888;" th:text="${job.jobName}"></strong></p>
-                <p><strong>Address: </strong><strong style="color: #888;" th:text="${job.company.address.city}"></strong></p>
-                <p><strong>Skill Name: </strong><strong style="color: #888;" th:text="${job.jobSkills}"></strong></p>
-                <!-- Thêm nút Apply Now -->
+                <p><strong>Skill Requirement: </strong></p>
+                <ul>
+                    <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
+                        <strong style="display: inline; margin-right: 5px;">Skill Name:</strong>
+                        <span th:text="${skillInfo.skill.skillName}" style="display: inline;"></span>
+                    </li>
+
+                    <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
+                        <strong style="display: inline; margin-right: 5px;">Skill Type:</strong>
+                        <span th:text="${skillInfo.skill.skillType.name()}" style="display: inline;"></span>
+                    </li>
+                    <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
+                        <strong style="display: inline; margin-right: 5px;">Skill Level:</strong>
+                        <span th:text="${skillInfo.skillLevel.name()}" style="display: inline;"></span>
+                    </li>
+                    <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
+
+                        <strong style="display: inline; margin-right: 5px;">Skill Description:</strong>
+                        <span th:text="${skillInfo.skill.skillDescription}" style="display: inline;"></span>
+
+                    </li>
+                    <li th:each="skillInfo : ${skillsMap[job.id]}" style="list-style: initial; margin-left: 20px;">
+                        <strong style="display: inline; margin-right: 5px;">More Info:</strong>
+                        <span th:text="${skillInfo.moreInfos}" style="display: inline;"></span>
+                    </li>
+
+
+                </ul>
+
                 <div class="view-detail-button">
-                    <a class="btn btn-primary"
-                       th:href="@{/{companyId}/jobs(companyId=${company.id})}">Apply Now</a>
+                    <a class="btn btn-primary" th:href="@{/{companyId}/jobs(companyId=${company.id})}">Apply Now</a>
                 </div>
             </div>
         </li>
@@ -271,25 +294,25 @@
            th:if="${jobPage.number > 0}"
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Previous</a>
 
-<!--        &lt;!&ndash; Display all page numbers &ndash;&gt;-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=1)}" th:text="1"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=2)}" th:text="2"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=3)}" th:text="3"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=4)}" th:text="4"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=5)}" th:text="5"></a>-->
+        <!--        &lt;!&ndash; Display all page numbers &ndash;&gt;-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=1)}" th:text="1"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=2)}" th:text="2"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=3)}" th:text="3"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=4)}" th:text="4"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=5)}" th:text="5"></a>-->
         <!-- Display ellipsis if there are more pages -->
-<!--        <div th:if="${jobPage.totalPages > 5}" class="ellipsis">...</div>-->
-<!--        &lt;!&ndash; Display the last 5 pages &ndash;&gt;-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 4})}"-->
-<!--           th:text="${jobPage.totalPages - 4}"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 3})}"-->
-<!--           th:text="${jobPage.totalPages - 3}"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 2})}"-->
-<!--           th:text="${jobPage.totalPages - 2}"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 1})}"-->
-<!--           th:text="${jobPage.totalPages - 1}"></a>-->
-<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages})}"-->
-<!--           th:text="${jobPage.totalPages}"></a>-->
+        <!--        <div th:if="${jobPage.totalPages > 5}" class="ellipsis">...</div>-->
+        <!--        &lt;!&ndash; Display the last 5 pages &ndash;&gt;-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 4})}"-->
+        <!--           th:text="${jobPage.totalPages - 4}"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 3})}"-->
+        <!--           th:text="${jobPage.totalPages - 3}"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 2})}"-->
+        <!--           th:text="${jobPage.totalPages - 2}"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages - 1})}"-->
+        <!--           th:text="${jobPage.totalPages - 1}"></a>-->
+        <!--        <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.totalPages})}"-->
+        <!--           th:text="${jobPage.totalPages}"></a>-->
 
         <!-- Display "Next" button -->
         <a th:href="@{/jobs(size=${jobPage.size}, page=${jobPage.number + 2})}"

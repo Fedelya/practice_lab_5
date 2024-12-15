@@ -83,43 +83,72 @@ public class TranAnhTienPracticeLab5Application {
 //
 //            for (int i = 1; i < 1000; i++) {
 //                Address address = new Address();
-//                address.setCity(city[rnd.nextInt(60)]);
-//                address.setStreet(street[rnd.nextInt(30)]);
+//                address.setCity(city[rnd.nextInt(city.length)]);
+//                address.setStreet(street[rnd.nextInt(street.length)]);
 //                address.setCountry(CountryCode.VN);
 //                address.setNumber(rnd.nextInt(1, 1000) + "");
 //                address.setZipcode(rnd.nextInt(70000, 80000) + "");
 //                addressRepository.save(address);
+//
 //                Candidate candidate = new Candidate();
-//                candidate.setFullName(fullName[rnd.nextInt(100)]);
+//                candidate.setFullName(fullName[rnd.nextInt(fullName.length)]);
 //                candidate.setDob(LocalDate.of(rnd.nextInt(1980, 2010), rnd.nextInt(1, 12), rnd.nextInt(1, 28)));
 //                candidate.setEmail("candidate" + i + "@gmail.com");
-//                candidate.setPhone(number[rnd.nextInt(4)] + rnd.nextLong(11111111L, 99999999L));
+//                candidate.setPhone(number[rnd.nextInt(number.length)] + rnd.nextLong(11111111L, 99999999L));
 //                candidate.setAddress(address);
 //                candidateRepository.save(candidate);
+//
 //                Company company = new Company();
 //                company.setCompName("Company " + i);
 //                company.setEmail("company" + i + "@gmail.com");
-//                company.setPhone(number[rnd.nextInt(4)] + rnd.nextLong(11111111L, 99999999L));
+//                company.setPhone(number[rnd.nextInt(number.length)] + rnd.nextLong(11111111L, 99999999L));
 //                company.setWebUrl("http://company" + i + ".com");
 //                company.setAbout("About Company " + i);
-//                company.setJobs(null);
+//                company.setJobs(new ArrayList<>()); // Initialize the jobs list
 //                company.setAddress(address);
 //                companyRepository.save(company);
+//
+////                Skill skill = new Skill();
+////                skill.setSkillName("Skill " + i);
+////                skill.setSkillDescription("Skill Description " + i);
+////                skill.setSkillType(i % 3 == 0 ? SkillType.UNSPECIFIC : i % 3 == 1 ? SkillType.TECHNICAL_SKILL : SkillType.SOFT_SKILL);
+////                skill.setJobSkills(new ArrayList<>()); // Initialize the jobSkills list
+////                skillRepository.save(skill);
+//
+//                Job job = new Job();
+//                job.setJobName("Job " + i);
+//                job.setJobDesc("Job Description " + i);
+//                job.setCompany(companyRepository.findById((long) rnd.nextInt(1, 1000)).orElse(null));
+//                jobRepository.save(job);
+//
+//                // Create and save a Skill
 //                Skill skill = new Skill();
 //                skill.setSkillName("Skill " + i);
 //                skill.setSkillDescription("Skill Description " + i);
 //                skill.setSkillType(i % 3 == 0 ? SkillType.UNSPECIFIC : i % 3 == 1 ? SkillType.TECHNICAL_SKILL : SkillType.SOFT_SKILL);
-//                skill.setJobSkills(null);
 //                skillRepository.save(skill);
+//
+//                // Add job to company's job list
+//                company.getJobs().add(job);
+//                companyRepository.save(company); // Save company again to update the jobs list
+//
+//                // Create and save a JobSkill
+//                JobSkill jobSkill = new JobSkill();
+//                JobSkillId jobSkillId = new JobSkillId();
+//                jobSkillId.setJobId(job.getId());
+//                jobSkillId.setSkillId(skill.getId());
+//                jobSkill.setId(jobSkillId);
+//                jobSkill.setJob(job);
+//                jobSkill.setSkill(skill);
+//                jobSkill.setSkillLevel(i % 5 == 0 ? SkillLevel.BEGINNER : i % 5 == 1 ? SkillLevel.INTERMEDIATE : i % 5 == 2 ? SkillLevel.ADVANCED : i % 5 == 3 ? SkillLevel.PROFESSIONAL : SkillLevel.MASTER);
+//                jobSkill.setMoreInfo("More Infos " + i);
+//                jobSkillRepository.save(jobSkill);
+//
 //            }
-//            for (int i = 1; i < 3000; i++) {
-//                Job job = new Job();
-//                job.setJobName("Job " + i);
-//                job.setJobDesc("Job Description " + i);
-//                job.setCompany(companyRepository.findById((long) rnd.nextInt(1, 1000)).get());
-//                jobRepository.save(job);
-//            }
-//            for (int i = 1; i < 100 ; i++){
+////            for (int i = 1; i < 3000; i++) {
+////
+////            }
+//            for (int i = 1; i < 100; i++) {
 //                Experience experience = new Experience();
 //                experience.setCompanyName("Company " + i);
 //                experience.setFromDate(LocalDate.of(rnd.nextInt(1980, 2010), rnd.nextInt(1, 12), rnd.nextInt(1, 28)));
@@ -135,19 +164,11 @@ public class TranAnhTienPracticeLab5Application {
 //                CandidateSkill candidateSkill = new CandidateSkill();
 //                candidateSkill.setId(new CandidateSkillId());
 //                candidateSkill.setSkill(skill);
-//                candidateSkill.setSkillLevel(i%5==0? SkillLevel.BEGINNER:i%5==1?SkillLevel.INTERMEDIATE:i%5==2? SkillLevel.ADVANCED:i%5==3?SkillLevel.PROFESSIONAL:SkillLevel.MASTER);
+//                candidateSkill.setSkillLevel(i % 5 == 0 ? SkillLevel.BEGINNER : i % 5 == 1 ? SkillLevel.INTERMEDIATE : i % 5 == 2 ? SkillLevel.ADVANCED : i % 5 == 3 ? SkillLevel.PROFESSIONAL : SkillLevel.MASTER);
 //                candidateSkill.setMoreInfos("More Infos " + i);
 //                candidateSkill.setCandidate(candidate);
 //                candidateSkillRepository.save(candidateSkill);
-//                JobSkill jobSkill = new JobSkill();
-//                jobSkill.setId(new JobSkillId());
-//                jobSkill.setJob(jobRepository.findById((long) rnd.nextInt(1, 3000)).get());
-//                jobSkill.setSkill(skillRepository.findById((long) rnd.nextInt(1, 1000)).get());
-//                jobSkill.setSkillLevel(i % 9 == 0 ? SkillLevel.BEGINNER : i % 9 == 2 ? SkillLevel.INTERMEDIATE : i % 9 == 4 ? SkillLevel.ADVANCED : i % 9 == 6 ? SkillLevel.PROFESSIONAL : SkillLevel.MASTER);
-//                jobSkill.setMoreInfo("More Infos " + i);
-//                jobSkillRepository.save(jobSkill);
 //            }
 //        };
 //    }
-
 }
