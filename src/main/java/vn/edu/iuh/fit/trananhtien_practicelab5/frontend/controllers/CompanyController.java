@@ -26,13 +26,14 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/companies")
-    public String showCompanyListPaging(HttpSession session, Model model, @RequestParam("page") Optional<Integer> page,
-                                        @RequestParam("size") Optional<Integer> size) {
+    public String showCompanies(HttpSession session, Model model,
+                                @RequestParam("page") Optional<Integer> page,
+                                @RequestParam("size") Optional<Integer> size) {
         int currPage = page.orElse(1);
         int pageSize = size.orElse(10);
         Page<Company> companyPage = companyService.findAll(currPage - 1, pageSize, "id", "asc");
-        Candidate candidate = (Candidate) session.getAttribute("candidate");
 
+        Candidate candidate = (Candidate) session.getAttribute("candidate");
         if (candidate != null) {
             model.addAttribute("candidate", candidate);
         } else {
@@ -40,13 +41,13 @@ public class CompanyController {
         }
 
         model.addAttribute("companyPage", companyPage);
-        int totalPage = companyPage.getTotalPages();
-        if (totalPage > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());
+        if (companyPage.getTotalPages() > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, companyPage.getTotalPages()).boxed().collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
         return "companies/companies-paging";
     }
+
 
     @RequestMapping("/companies")
     public String showCompaniesPage(HttpSession session, Model model, @RequestParam("page") Optional<Integer> page,
@@ -69,5 +70,10 @@ public class CompanyController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
         return "companies/companies-paging";
+    }
+
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        return "/companies/register";  // Tên của view hoặc file HTML của trang đăng ký
     }
 }

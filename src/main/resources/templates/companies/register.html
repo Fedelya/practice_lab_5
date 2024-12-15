@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Login to Job Portal to find the best job opportunities or post a job.">
-    <title>Login - Job Portal</title>
+    <title>Register - Job Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Reset Styles */
@@ -35,7 +34,6 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100%;
         }
 
         header h1 {
@@ -43,17 +41,13 @@
             font-weight: 700;
         }
 
-        header nav {
-            display: flex;
-            gap: 20px;
-        }
-
         header nav a {
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
-            padding: 10px 15px;
+            margin-left: 20px;
             border-radius: 8px;
+            padding: 10px 15px;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
@@ -70,25 +64,23 @@
             padding: 20px;
         }
 
-        .login-container {
+        .register-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             padding: 20px;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
         }
 
-        .login-container h2 {
+        .register-container h2 {
             text-align: center;
             color: #56ccf2;
             margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px;
-            position: relative; /* Set position for toggle icon alignment */
+            margin-bottom: 15px;
         }
 
         .form-group label {
@@ -99,11 +91,10 @@
 
         .form-group input {
             width: 100%;
-            padding: 10px 12px; /* Giảm padding để cân bằng */
-            padding-right: 40px; /* Chừa khoảng trống cho icon ở bên phải */
+            padding: 10px;
             font-size: 1rem;
-            border-radius: 5px;
             border: 1px solid #ddd;
+            border-radius: 5px;
             outline: none;
             transition: border-color 0.3s ease;
         }
@@ -112,51 +103,24 @@
             border-color: #6fcf97;
         }
 
-        .toggle-password {
-            position: absolute;
-            right: 12px; /* Căn chỉnh nằm gọn bên trong input */
-            top: 74%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #aaa;
-            font-size: 1.1rem;
-            z-index: 1; /* Đảm bảo icon luôn nằm trên input */
-        }
         .form-actions {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .login-btn, .register-btn {
-            width: 48%;
-            padding: 12px;
-            font-size: 1.2rem;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .login-btn {
-            background-color: #6fcf97;
-            color: #fff;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .login-btn:hover {
-            background-color: #4caf73;
+            margin-top: 20px;
         }
 
         .register-btn {
-            background-color: #56ccf2;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            background-color: #6fcf97;
             color: #fff;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         .register-btn:hover {
-            background-color: #4098d7;
+            background-color: #4caf73;
         }
 
         footer {
@@ -164,13 +128,26 @@
             padding: 15px 0;
             background-color: #6fcf97;
             color: #fff;
-            width: 100%;
         }
 
         footer p {
             font-size: 0.9rem;
         }
 
+        .login-redirect {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-redirect a {
+            color: #56ccf2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-redirect a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -184,44 +161,40 @@
     </nav>
 </header>
 
+<!-- Phần Nội dung Đăng Ký -->
 <div class="main-content">
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="/check" method="POST">
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="/register" method="POST">
             <div class="form-group">
-                <label for="username">Email:</label>
-                <input type="email" id="username" name="username" placeholder="Enter your email" required>
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
             </div>
             <div class="form-actions">
-                <button type="submit" class="login-btn" id="login-btn">Login</button>
-                <a href="/register" class="register-btn">Register</a>
+                <button type="submit" class="register-btn">Register</button>
             </div>
         </form>
+        <div class="login-redirect">
+            Already have an account? <a href="/login">Login here</a>
+        </div>
     </div>
 </div>
 
 <footer>
     <p>&copy; 2024 Job Portal. All rights reserved.</p>
 </footer>
-
-<script>
-    function togglePassword() {
-        const passwordField = document.getElementById('password');
-        const toggleIcon = document.querySelector('.toggle-password');
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-            toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
-        } else {
-            passwordField.type = 'password';
-            toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
-        }
-    }
-</script>
 
 </body>
 </html>
