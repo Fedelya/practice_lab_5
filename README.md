@@ -8,3 +8,7 @@
 
 ### Trang chủ: 
 ![Trang chủ](https://i.imgur.com/Fc9D9gc.png)
+
+
+### Trang Công Ty: 
+![Công ty](https://i.imgur.com/i9tGMBN.png)
