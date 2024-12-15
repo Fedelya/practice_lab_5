@@ -9,9 +9,12 @@
 ### Trang chủ: 
 ![Trang chủ](https://i.imgur.com/Fc9D9gc.png)
 
-
-### Trang Công Ty: 
+### Trang hiển thị danh sách công ty đang tuyển: 
 ![Công ty](https://i.imgur.com/i9tGMBN.png)
 
 ### Trang Đăng Nhập:
 ![Đăng nhập](https://i.imgur.com/hdJRteD.png)
+
+### Trang Công việc:
+![Job](https://i.imgur.com/IAZAPkr.png)
+
