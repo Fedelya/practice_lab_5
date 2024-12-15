@@ -255,6 +255,7 @@
                 <p><strong>Description: </strong><strong style="color: #888;" th:text="${job.jobDesc}"></strong></p>
                 <p><strong>Job Name: </strong><strong style="color: #888;" th:text="${job.jobName}"></strong></p>
                 <p><strong>Address: </strong><strong style="color: #888;" th:text="${job.company.address.city}"></strong></p>
+                <p><strong>Skill Name: </strong><strong style="color: #888;" th:text="${job.jobSkills}"></strong></p>
                 <!-- Thêm nút Apply Now -->
                 <div class="view-detail-button">
                     <a class="btn btn-primary"
@@ -270,12 +271,12 @@
            th:if="${jobPage.number > 0}"
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Previous</a>
 
-        <!-- Display all page numbers -->
-        <a th:href="@{/jobs(size=${jobPage.size}, page=1)}" th:text="1"></a>
-        <a th:href="@{/jobs(size=${jobPage.size}, page=2)}" th:text="2"></a>
-        <a th:href="@{/jobs(size=${jobPage.size}, page=3)}" th:text="3"></a>
-        <a th:href="@{/jobs(size=${jobPage.size}, page=4)}" th:text="4"></a>
-        <a th:href="@{/jobs(size=${jobPage.size}, page=5)}" th:text="5"></a>
+<!--        &lt;!&ndash; Display all page numbers &ndash;&gt;-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=1)}" th:text="1"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=2)}" th:text="2"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=3)}" th:text="3"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=4)}" th:text="4"></a>-->
+<!--        <a th:href="@{/jobs(size=${jobPage.size}, page=5)}" th:text="5"></a>-->
         <!-- Display ellipsis if there are more pages -->
 <!--        <div th:if="${jobPage.totalPages > 5}" class="ellipsis">...</div>-->
 <!--        &lt;!&ndash; Display the last 5 pages &ndash;&gt;-->

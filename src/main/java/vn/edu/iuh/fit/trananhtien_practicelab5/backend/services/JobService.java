@@ -1,8 +1,11 @@
 package vn.edu.iuh.fit.trananhtien_practicelab5.backend.services;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Company;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.Job;
+import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.CompanyRepository;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.JobRepository;
 
 import java.util.List;
@@ -13,6 +16,7 @@ public class JobService {
 
     public JobService(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
+
     }
 
     public Page<Job> getAll(int pageNo, int pageSize, String sortBy, String sortDirection, long comId){

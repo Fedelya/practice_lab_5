@@ -5,42 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List Candidates</title>
     <style>
-        /* Custom styles for table and buttons */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #6fcf97, #56ccf2);
+            color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        header nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .table-header {
-            background-color: #3b82f6; /* Use your preferred color */
-            color: #fff; /* Text color white for contrast */
+        .container h1 {
+            margin-bottom: 20px;
+            color: #56ccf2;
+            font-size: 2rem;
+            text-align: center;
         }
 
-        .action-buttons {
-            display: flex;
-            justify-content: space-around;
+        .btn {
+            display: inline-block;
+            margin: 15px 15px;
+            padding: 12px 25px;
+            background-color: #6fcf97;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #4caf73;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table thead {
+            background: linear-gradient(90deg, #6fcf97, #56ccf2);
+            color: #fff;
         }
 
         .action-buttons a {
-            padding: 4px 16px;
-            border-radius: 4px;
-            color: white;
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 5px;
+            color: #fff;
             text-decoration: none;
-            margin: 0 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .action-buttons .update {
-            background-color: #10b981; /* Update color */
+        .action-buttons a.update {
+            background-color: #6fcf97;
         }
 
-        .action-buttons .delete {
-            background-color: #ef4444; /* Delete color */
+        .action-buttons a.update:hover {
+            background-color: #4caf73;
+        }
+
+        .action-buttons a.delete {
+            background-color: #ef4444;
+        }
+
+        .action-buttons a.delete:hover {
+            background-color: #d32f2f;
         }
 
         .page-links {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -48,48 +141,32 @@
 
         .page-links a {
             padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin: 0 4px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #56ccf2;
+            color: #fff;
             text-decoration: none;
-            color: #3b82f6;
+            transition: background-color 0.3s ease;
         }
 
         .page-links a:hover {
-            background-color: #FBD603;
-            border: 1px solid darkred;
+            background-color: #4098d7;
         }
 
         .page-links .active {
-            background-color: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
+            background-color: #6fcf97;
         }
 
-        .ellipsis {
-            margin: 0 6px;
-            font-size: 18px;
-            color: #ccc;
-        }
-
-        /* Table body styling for better alignment */
-        .table-body td {
-            padding: 8px;
+        footer {
             text-align: center;
-            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            background-color: #6fcf97;
+            color: #fff;
+            margin-top: auto;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .table-header, .action-buttons a {
-                font-size: 12px;
-                padding: 3px 8px;
-            }
-
-            .page-links a {
-                padding: 4px 8px;
-                font-size: 12px;
-            }
+        footer p {
+            font-size: 0.9rem;
         }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -136,7 +213,8 @@
 
         <div class="page-links" th:if="${candidatePage.totalPages > 0}">
             <!-- Display "Previous" button -->
-            <a th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number - 0})}" th:if="${candidatePage.number > 0}"
+            <a th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number - 0})}"
+               th:if="${candidatePage.number > 0}"
                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Previous</a>
 
             <!-- Display all page numbers -->
@@ -160,11 +238,15 @@
                th:text="${candidatePage.totalPages}"></a>
 
             <!-- Display "Next" button -->
-            <a th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number + 2})}" th:if="${candidatePage.hasNext}"
+            <a th:href="@{/candidates(size=${candidatePage.size}, page=${candidatePage.number + 2})}"
+               th:if="${candidatePage.hasNext}"
                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Next</a>
         </div>
 
     </div>
 </div>
+<footer>
+    <p>&copy; 2024 Job Portal. All rights reserved.</p>
+</footer>
 </body>
 </html>

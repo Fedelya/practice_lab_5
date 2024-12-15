@@ -31,4 +31,17 @@ public class Job {
     @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
     private List<JobSkill> jobSkills;
 
+    @Override
+    public String toString() {
+        return jobSkills == null ?
+                jobDesc + '\'' +
+                ", " + jobName + '\'' +
+                ", " + company +
+                '}' :
+                jobDesc + '\'' +
+                ", " + jobName + '\'' +
+                ", " + company +
+                ", " + jobSkills +
+                '}';
+    }
 }

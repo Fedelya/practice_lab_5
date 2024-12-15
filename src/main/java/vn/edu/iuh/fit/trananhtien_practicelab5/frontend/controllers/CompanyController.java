@@ -23,7 +23,6 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-
     @GetMapping("/companies")
     public String showCompanyListPaging(Model model, @RequestParam("page") Optional<Integer> page,
                                         @RequestParam("size") Optional<Integer> size){
@@ -38,5 +37,7 @@ public class CompanyController {
         }
         return "companies/companies-paging";
     }
+
+
 
 }

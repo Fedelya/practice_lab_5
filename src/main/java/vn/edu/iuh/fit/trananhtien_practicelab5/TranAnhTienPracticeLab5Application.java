@@ -14,6 +14,8 @@ import vn.edu.iuh.fit.trananhtien_practicelab5.backend.models.*;
 import vn.edu.iuh.fit.trananhtien_practicelab5.backend.repositories.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
@@ -100,6 +102,7 @@ public class TranAnhTienPracticeLab5Application {
 //                company.setPhone(number[rnd.nextInt(4)] + rnd.nextLong(11111111L, 99999999L));
 //                company.setWebUrl("http://company" + i + ".com");
 //                company.setAbout("About Company " + i);
+//                company.setJobs(null);
 //                company.setAddress(address);
 //                companyRepository.save(company);
 //                Skill skill = new Skill();
@@ -146,4 +149,5 @@ public class TranAnhTienPracticeLab5Application {
 //            }
 //        };
 //    }
+
 }
