@@ -86,8 +86,11 @@ spring.jpa.show-sql=true
 ### Trang hiển thị danh sách công ty đang tuyển: 
 ![Công ty](https://i.imgur.com/i9tGMBN.png)
 
-### Trang Đăng Nhập:
+### Trang Đăng nhập:
 ![Đăng nhập](https://i.imgur.com/hdJRteD.png)
+
+### Trang Đăng ký: 
+![Đăng ký](https://i.imgur.com/9U65d8e.png)
 
 ### Trang Công việc:
 ![Job](https://i.imgur.com/IAZAPkr.png)
