@@ -18,6 +18,41 @@ https://github.com/Fedelya/practice_lab_5.git
 
 ### 2. Mở project bằng các IDEA như IntelliJ, eclipse, ...
 - Vào thư mục build.gladle để đảm bảo đã cài hết các plugin
+- Đảm bảo đầy đủ các dependencies sau:
+- spring-boot
+```bash
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+implementation 'org.springframework.boot:spring-boot-starter-web'
+implementation 'org.springframework.boot:spring-boot-starter-web-services'
+developmentOnly 'org.springframework.boot:spring-boot-devtools'
+testImplementation 'org.springframework.boot:spring-boot-starter-test'
+testImplementation 'org.springframework.security:spring-security-test'
+testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+```
+  + lombok:
+```bash
+compileOnly 'org.projectlombok:lombok'
+annotationProcessor 'org.projectlombok:lombok'
+```
+  + mariaDB database:
+```bash
+implementation 'org.mariadb.jdbc:mariadb-java-client:3.2.0'
+runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+```
+  + Country code
+```bash
+implementation 'com.neovisionaries:nv-i18n:1.29'
+```
+  + koltin
+```bash
+implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+```
+  + database REST
+```bash
+implementation 'org.springframework.data:spring-data-rest-core:4.1.4'
+```
 
 ### 3. Dùng HeidiSQL (MySQL, ...) để có thể kết nối với MariaDB
 - Tạo database works (hoặc đặt tên theo mong muốn)
