@@ -109,20 +109,42 @@
             border-color: #6fcf97;
         }
 
-        .login-btn {
+        /* Đảm bảo cả hai nút (Login và Đăng Ký) nằm trên cùng một dòng */
+        .form-actions {
+            display: flex;
+            justify-content: space-between; /* Đặt khoảng cách đều giữa các nút */
             width: 100%;
+        }
+
+        .login-btn, .register-btn {
+            width: 48%; /* Cả hai nút sẽ chiếm khoảng 48% chiều rộng */
             padding: 12px;
-            background-color: #6fcf97;
-            color: #fff;
             font-size: 1.2rem;
             border-radius: 5px;
-            border: none;
+            text-align: center;
             cursor: pointer;
+        }
+
+        .login-btn {
+            background-color: #6fcf97;
+            color: #fff;
+            border: none;
             transition: background-color 0.3s ease;
         }
 
         .login-btn:hover {
             background-color: #4caf73;
+        }
+
+        .register-btn {
+            background-color: #56ccf2;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background-color: #4098d7;
         }
 
         footer {
@@ -143,11 +165,12 @@
 <header>
     <h1>Job Portal</h1>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Post a Job</a>
-        <a href="#">Add Company</a>
+        <a href="/companies">Home</a>
+        <a href="/">Post a Job</a>
+        <a href="/">Add Company</a>
     </nav>
 </header>
+
 
 <!-- Phần Nội dung Login -->
 <div class="main-content">
@@ -163,7 +186,10 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="login-btn">Login</button>
+            <div class="form-actions">
+                <button type="submit" class="login-btn">Login</button>
+                <a href="/" class="register-btn">Đăng Ký</a>
+            </div>
         </form>
     </div>
 </div>

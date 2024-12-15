@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.trananhtien_practicelab5.frontend.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -25,14 +26,22 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/companies")
-    public String showCompanyListPaging(Model model, @RequestParam("page") Optional<Integer> page,
-                                        @RequestParam("size") Optional<Integer> size){
+    public String showCompanyListPaging(HttpSession session, Model model, @RequestParam("page") Optional<Integer> page,
+                                        @RequestParam("size") Optional<Integer> size) {
         int currPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<Company> companyPage = companyService.findAll(currPage-1, pageSize, "id", "asc");
+        Page<Company> companyPage = companyService.findAll(currPage - 1, pageSize, "id", "asc");
+        Candidate candidate = (Candidate) session.getAttribute("candidate");
+
+        if (candidate != null) {
+            model.addAttribute("candidate", candidate);
+        } else {
+            model.addAttribute("message", "Please login!");
+        }
+
         model.addAttribute("companyPage", companyPage);
         int totalPage = companyPage.getTotalPages();
-        if(totalPage > 0){
+        if (totalPage > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
@@ -40,14 +49,22 @@ public class CompanyController {
     }
 
     @RequestMapping("/companies")
-    public String showCompaniesPage(Model model, @RequestParam("page") Optional<Integer> page,
+    public String showCompaniesPage(HttpSession session, Model model, @RequestParam("page") Optional<Integer> page,
                                     @RequestParam("size") Optional<Integer> size) {
         int currPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<Company> companyPage = companyService.findAll(currPage-1, pageSize, "id", "asc");
+        Page<Company> companyPage = companyService.findAll(currPage - 1, pageSize, "id", "asc");
+        Candidate candidate = (Candidate) session.getAttribute("candidate");
+
+        if (candidate != null) {
+            model.addAttribute("candidate", candidate);
+        } else {
+            model.addAttribute("message", "Please login!");
+        }
+
         model.addAttribute("companyPage", companyPage);
         int totalPage = companyPage.getTotalPages();
-        if(totalPage > 0){
+        if (totalPage > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }

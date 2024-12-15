@@ -55,8 +55,8 @@ public class LoginController {
 
     @RequestMapping("/logout")
     public String logout(SessionStatus sessionStatus, HttpSession session, Model model) {
-        session.removeAttribute("candidate");
-        sessionStatus.setComplete();
-        return "redirect:/login";
+        session.removeAttribute("candidate");  // Remove the candidate from the session
+        sessionStatus.setComplete();  // Complete the session
+        return "redirect:/login";  // Redirect to the login page
     }
 }
