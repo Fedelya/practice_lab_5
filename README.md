@@ -16,7 +16,7 @@
 https://github.com/Fedelya/practice_lab_5.git
 ```
 
-### 2. Mở project bằng cách IDEA như IntelliJ, eclipse, ...
+### 2. Mở project bằng các IDEA như IntelliJ, eclipse, ...
 - Vào thư mục build.gladle để đảm bảo đã cài hết các plugin
 
 ### 3. Dùng HeidiSQL (MySQL, ...) để có thể kết nối với MariaDB
