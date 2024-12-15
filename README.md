@@ -20,6 +20,7 @@ https://github.com/Fedelya/practice_lab_5.git
 - Vào thư mục build.gladle để đảm bảo đã cài hết các plugin
 
 ### 3. Dùng HeidiSQL (MySQL, ...) để có thể kết nối với MariaDB
+- Tạo database works (hoặc đặt tên theo mong muốn)
 
 ### 4. Chỉnh sửa thông tin kết nối database trong application.propẻties.
 ```bash
