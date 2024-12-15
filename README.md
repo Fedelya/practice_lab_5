@@ -7,4 +7,4 @@
 ## Một số hình ảnh minh họa
 
 ### Trang chủ: 
-![Trang chủ](index.png)
+![Trang chủ]((https://i.imgur.com/Fc9D9gc.png))
